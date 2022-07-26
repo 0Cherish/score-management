@@ -18,6 +18,10 @@ export default new VueRouter({
             component: ()=>import('../views/login/index'),
             children: [
                 {
+                    path: '',
+                    component: ()=>import('../views/login/login-username')
+                },
+                {
                     path: '/username',
                     name: 'username',
                     component: ()=>import('../views/login/login-username')
@@ -41,6 +45,10 @@ export default new VueRouter({
             component: ()=>import('../views/user/index'),
             children:[
                 {
+                    path: '',
+                    component:()=>import('../views/user/student')
+                },
+                {
                     path: '/student',
                     name:'student',
                     component:()=>import('../views/user/student')
@@ -51,9 +59,9 @@ export default new VueRouter({
                     component:()=>import('../views/user/course')
                 },
                 {
-                    path: '/class',
-                    name:'class',
-                    component:()=>import('../views/user/class')
+                    path: '/score',
+                    name:'score',
+                    component:()=>import('../views/user/score')
                 },
                 {
                     path: '/personal',
