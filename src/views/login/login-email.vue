@@ -1,18 +1,22 @@
 <template>
-    <div id="email_login">
+    <div id="mobile_login">
         <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm"
                  class="demo-ruleForm">
             <div class="input">
-                <el-input type="text" placeholder="请输入你的邮箱"
-                          v-model="ruleForm.pass" autocomplete="off"></el-input>
+                <el-form-item prop="phone">
+                    <el-input type="text" placeholder="请输入你的邮箱"
+                              v-model="ruleForm.phone" autocomplete="off"></el-input>
+                </el-form-item>
             </div>
             <div class="input">
-                <el-input type="text" placeholder="请输入邮箱验证码"
-                          v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+                <el-form-item prop="code">
+                    <el-input type="text" placeholder="请输入验证码"
+                              v-model="ruleForm.code" autocomplete="off"></el-input>
+                </el-form-item>
             </div>
             <div class="button">
                 <el-button type="primary" style="width:296px;background-color: #6b9bcd"
-                           @click="submitForm('ruleForm')">获取邮箱验证码</el-button>
+                           @click="getCode">{{codeText}}</el-button>
 
             </div>
             <div class="button">
@@ -22,71 +26,55 @@
             </div>
 
         </el-form>
+
     </div>
 </template>
 
 <script>
 export default {
-    name: "EmailLogin",
+    name: "login-email",
     data() {
-        var checkAge = (rule, value, callback) => {
-            if (!value) {
-                return callback(new Error('年龄不能为空'));
-            }
-            setTimeout(() => {
-                if (!Number.isInteger(value)) {
-                    callback(new Error('请输入数字值'));
-                } else {
-                    if (value < 18) {
-                        callback(new Error('必须年满18岁'));
-                    } else {
-                        callback();
-                    }
-                }
-            }, 1000);
-        };
-        var validatePass = (rule, value, callback) => {
-            if (value === '') {
-                callback(new Error('请输入密码'));
-            } else {
-                if (this.ruleForm.checkPass !== '') {
-                    this.$refs.ruleForm.validateField('checkPass');
-                }
+        let validatePhone = (rule, value, callback) => {
+            let reg=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+            if (value==='') {
+                callback(new Error('请输入你的邮箱'));
+            }else if(!reg.test(this.ruleForm.phone)){
+                callback(new Error('请输入正确的邮箱'));
+            }else{
                 callback();
             }
         };
-        var validatePass2 = (rule, value, callback) => {
+
+        let validateCode = (rule, value, callback) => {
             if (value === '') {
-                callback(new Error('请再次输入密码'));
-            } else if (value !== this.ruleForm.pass) {
-                callback(new Error('两次输入密码不一致!'));
-            } else {
+                callback(new Error('请输入验证码'));
+            }  else {
                 callback();
             }
         };
         return {
+            codeText:'获取邮箱验证码',
+            waitTime:60,
             ruleForm: {
-                pass: '',
-                checkPass: '',
-                age: ''
+                phone: '',
+                code: '',
             },
             rules: {
-                pass: [
-                    {validator: validatePass, trigger: 'blur'}
+                phone: [
+                    {validator: validatePhone, trigger: 'blur'}
                 ],
-                checkPass: [
-                    {validator: validatePass2, trigger: 'blur'}
-                ],
-                age: [
-                    {validator: checkAge, trigger: 'blur'}
+                code: [
+                    {validator: validateCode, trigger: 'blur'}
                 ]
+
             }
         };
     },
     methods: {
+
         submitForm(formName) {
-            this.$refs[formName].validate((valid) => {
-                if (valid) {
+            this.$refs[formName].validateField((phone) => {
+                if (phone) {
                     alert('submit!');
                 } else {
                     console.log('error submit!!');
@@ -94,9 +82,7 @@ export default {
                 }
             });
         },
-        resetForm(formName) {
-            this.$refs[formName].resetFields();
-        }
+
     }
 }
 </script>
@@ -108,4 +94,5 @@ export default {
 .button{
     margin:20px 10px;
 }
+
 </style>

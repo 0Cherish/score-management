@@ -27,36 +27,38 @@
 
         </div>
 
+        <div class="page">
+            <div class="aside">
 
-        <div class="aside">
 
+                <el-menu :default-active="activeIndex" class="el-menu-vertical-demo"
+                         router="router"
+                         @close="handleClose"
+                         @open="handleOpen">
+                    <el-menu-item index="/user/student">
+                        <i class="el-icon-user"></i>
+                        <span slot="title">学生管理</span>
+                    </el-menu-item>
+                    <el-menu-item index="/user/course">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">课程管理</span>
+                    </el-menu-item>
+                    <el-menu-item index="/user/score">
+                        <i class="el-icon-document"></i>
+                        <span slot="title">成绩管理</span>
+                    </el-menu-item>
+                    <el-menu-item index="/user/personal">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title">个人中心</span>
+                    </el-menu-item>
+                </el-menu>
 
-            <el-menu :default-active="activeIndex" class="el-menu-vertical-demo"
-                     router="router"
-                     @close="handleClose"
-                     @open="handleOpen">
-                <el-menu-item index="/student">
-                    <i class="el-icon-user"></i>
-                    <span slot="title">学生管理</span>
-                </el-menu-item>
-                <el-menu-item index="/course">
-                    <i class="el-icon-menu"></i>
-                    <span slot="title">课程管理</span>
-                </el-menu-item>
-                <el-menu-item index="/score">
-                    <i class="el-icon-document"></i>
-                    <span slot="title">成绩管理</span>
-                </el-menu-item>
-                <el-menu-item index="/personal">
-                    <i class="el-icon-setting"></i>
-                    <span slot="title">个人中心</span>
-                </el-menu-item>
-            </el-menu>
-
+            </div>
+            <div class="content">
+                <router-view></router-view>
+            </div>
         </div>
-        <div class="content">
-            <router-view></router-view>
-        </div>
+
     </div>
 </template>
 
@@ -65,7 +67,7 @@ export default {
     name: "UserMenu",
     data() {
         return {
-            activeIndex: '/student',
+            activeIndex: '/user/student',
             username: '米线',
             avatarUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
         };
@@ -114,17 +116,27 @@ export default {
     margin: 10px 20px 10px 10px;
     float: right;
 }
-
-.aside {
-    width: 300px;
-    height: 700px;
+.page{
+    width: 1200px;
+    margin:auto;
     border: black solid 1px;
+}
+.page::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.aside {
+    width: 220px;
+    height: 700px;
+
     clear: left;
     float: left;
 }
 
 .content {
-    border: red solid 1px;
+    width: 980px;
+
     float: left;
 }
 </style>

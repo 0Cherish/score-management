@@ -17,10 +17,7 @@ export default new VueRouter({
             name: 'login',
             component: ()=>import('../views/login/index'),
             children: [
-                {
-                    path: '',
-                    component: ()=>import('../views/login/login-username')
-                },
+
                 {
                     path: '/username',
                     name: 'username',
@@ -44,34 +41,54 @@ export default new VueRouter({
             name: 'user',
             component: ()=>import('../views/user/index'),
             children:[
+
                 {
-                    path: '',
+                    path: 'student',
+                    name:'user-student',
                     component:()=>import('../views/user/student')
                 },
                 {
-                    path: '/student',
-                    name:'student',
-                    component:()=>import('../views/user/student')
-                },
-                {
-                    path: '/course',
-                    name:'course',
+                    path: 'course',
+                    name:'user-course',
                     component:()=>import('../views/user/course')
                 },
                 {
-                    path: '/score',
-                    name:'score',
+                    path: 'score',
+                    name:'user-score',
                     component:()=>import('../views/user/score')
                 },
                 {
-                    path: '/personal',
-                    name:'personal',
+                    path: 'personal',
+                    name:'user-personal',
                     component:()=>import('../views/user/personal')
                 }
             ]
         },
 
+        {
+            path:'/admin',
+            name:'admin',
+            component:()=>import('../views/admin/index'),
+            children:[
+                {
+                    path: 'student',
+                    name: 'admin-student',
+                    component:()=>import('../views/admin/student')
+                },
+                {
+                    path: 'teacher',
+                    name:'admin-student',
+                    component:()=>import('../views/admin/teacher')
+                },
+                {
+                    path: 'personal',
+                    name: 'admin-personal',
+                    component:()=>import('../views/admin/personal')
+                }
+            ]
 
+
+        },
 
         {
             path: '*',
