@@ -2,7 +2,7 @@
     <div class="login">
         <p class="title">学生成绩管理系统</p>
         <div id="login_menu">
-            <el-menu :default-active="activeIndex" router="true" class="el-menu-demo" mode="horizontal"  >
+            <el-menu :default-active="activeIndex" router="router" class="el-menu-demo" mode="horizontal"  >
                 <el-menu-item index="/username">用户名登录</el-menu-item>
                 <el-menu-item index="/mobile">手机号登录</el-menu-item>
                 <el-menu-item index="/email">邮箱登录</el-menu-item>
@@ -29,10 +29,13 @@ export default {
 </script>
 
 <style scoped>
+.login{
+    padding-top: 130px;
+}
 .title{
     font-weight: bold;
     font-size: 30px;
-    margin: 100px 0;
+    margin-top: 0;
 }
 #login_menu {
     background-color: #f8f8f8;

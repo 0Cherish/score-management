@@ -1,28 +1,22 @@
 <template>
-    <div class="user">
+    <div class="admin">
         <div class="header">
             <div class="header-left">
                 <i class="el-icon-school"></i>
                 <span class="title">学生成绩管理系统</span>
             </div>
 
-            <div class="header-right">
+            <div class="header-right" @mouseover="showExit" @mouseout="hiddenExit">
+                <div class="avatar">
+                    <el-avatar size="small"
+                               src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+                </div>
                 <span>{{ username }}</span>
-                <el-popover
-                    placement="top-start"
-                    trigger="click"
-                    width="20"
-                >
-                    <p>确定退出登录吗</p>
-                    <div style="text-align: right; margin: 0">
-                        <el-button size="mini" type="text" @click="visible = false">取消</el-button>
-                        <el-button type="primary" size="mini" @click="Exit">确定</el-button>
-                    </div>
-                    <div class="demo-basic--circle avatar" slot="reference">
-                        <el-avatar :src="avatarUrl" size="large"></el-avatar>
-                    </div>
-                </el-popover>
-
+                <i class="el-icon-arrow-down"></i>
+                <div class="exit" :style="{display:isExit}">
+                    <i class="el-icon-d-arrow-right"></i>
+                    <a @click="logout()">退出登录</a>
+                </div>
             </div>
 
         </div>
@@ -43,7 +37,10 @@
                         <i class="el-icon-menu"></i>
                         <span slot="title">教师管理</span>
                     </el-menu-item>
-
+                    <el-menu-item index="/admin/score">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">成绩管理</span>
+                    </el-menu-item>
                     <el-menu-item index="/admin/personal">
                         <i class="el-icon-setting"></i>
                         <span slot="title">个人中心</span>
@@ -52,21 +49,23 @@
 
             </div>
             <div class="content">
-                <router-view></router-view>
+                <div class="main">
+                    <router-view></router-view>
+                </div>
             </div>
         </div>
-
     </div>
 </template>
 
 <script>
 export default {
-  name: "AdminMenu",
+    name: "AdminMenu",
     data() {
         return {
             activeIndex: '/user/student',
             username: 'admin',
-            avatarUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+            avatarUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+            isExit: 'none'
         };
     },
     methods: {
@@ -76,45 +75,71 @@ export default {
         handleClose(key, keyPath) {
             console.log(key, keyPath);
         },
-        Exit(){
+        showExit() {
+            this.isExit = 'block'
+        },
+        hiddenExit() {
+            this.isExit = 'none'
+        },
+        logout() {
             this.$router.push('/login');
         }
+    },
+    mounted() {
+        this.$router.push('/admin/student')
     }
 
 }
 </script>
 
 <style scoped>
+.admin {
+    height: 100%;
+}
+
 .header {
-    background-color: #1a70c9;
-    height: 60px;
+    background-color: #4C4C4C;
+    height: 40px;
 }
 
 .header-left {
     float: left;
-
     width: 230px;
-    line-height: 60px;
+    line-height: 40px;
     margin-left: 20px;
-    font-size: 24px;
+    font-size: 20px;
     color: white;
 }
-
-
 
 .header-right {
     float: right;
-    font-size: 18px;
+    margin-right: 20px;
+    font-size: 16px;
     color: white;
-    height: 60px;
-    line-height: 60px;
+    line-height: 40px;
 }
 
 .avatar {
-    margin: 10px 20px 10px 10px;
-    float: right;
+    height: 28px;
+    margin: 6px 10px 0 0;
+    float: left;
 }
+
+.exit{
+    font-size: 16px;
+    position: fixed;
+    right: 20px;
+    top: 40px;
+    background-color: #4C4C4CAB;
+    padding: 0 5px;
+}
+
+.exit a:hover{
+    text-decoration: underline;
+}
+
 .page{
+    height: 897px;
     width: 1200px;
     margin:auto;
     border: black solid 1px;
@@ -126,15 +151,22 @@ export default {
 }
 .aside {
     width: 220px;
-    height: 700px;
-
     clear: left;
     float: left;
 }
 
 .content {
-    width: 980px;
-
+    width: 920px;
+    height: 837px;
+    padding: 30px;
     float: left;
+}
+
+.main{
+    height: 837px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: #bbb8b8 0 0 10px 2px;
+    overflow: auto;
 }
 </style>

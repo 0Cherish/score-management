@@ -1,25 +1,39 @@
 <template>
 <div class="student">
     <div class="header">
+        <div class="delete">
+            <el-button type="danger" icon="el-icon-delete" circle></el-button>
+        </div>
         <span>学生基本信息</span>
-        <div class="import">
-        <el-button type="success" icon="el-icon-bottom-left">Excel导入</el-button>
+        <div class="input">
+            <el-upload
+                class="upload-demo"
+                action=""
+                multiple
+                :limit="3"
+                shoe-file-list="false">
+                <el-button size="primary" type="primary">导入Excel</el-button>
+            </el-upload>
         </div>
     </div>
-    <el-divider></el-divider>
     <div class="info">
     <el-table
         :data="tableData"
         :default-sort="{prop:'name',order:'descending'}"
         stripe
-        height="900"
+        border
+        height="760"
         style="width: 100%">
 
+        <el-table-column
+            type="selection"
+            width="55">
+        </el-table-column>
         <el-table-column
             sortable="true"
             prop="name"
             label="姓名"
-            width="120">
+            width="80">
         </el-table-column>
         <el-table-column
             sortable="true"
@@ -37,46 +51,36 @@
             sortable="true"
             prop="id"
             label="学号"
-            width="130">
+            width="100">
         </el-table-column>
 
         <el-table-column
             sortable="true"
             prop="class"
             label="班级"
-            width="130">
+            width="100">
         </el-table-column>
 
         <el-table-column
             sortable="true"
             prop="course"
             label="课程"
-            width="164">
+            width="135">
         </el-table-column>
 
         <el-table-column
             sortable="true"
             prop="academy"
             label="学院"
-            width="164">
+            width="135">
         </el-table-column>
         <el-table-column
             sortable="true"
             prop="major"
             label="专业"
-        width="150">
+            width="135">
         </el-table-column>
-        <el-table-column
-            label="操作"
-            width="100"
-        >
 
-                <el-button
-                    size="mini"
-                    type="danger"
-                    @click="">删除</el-button>
-
-        </el-table-column>
 
     </el-table>
     </div>
@@ -280,13 +284,19 @@ export default {
 <style scoped>
 .header{
     height: 60px;
+    margin-bottom: 10px;
+}
+.delete{
+    float: left;
+    margin: 10px 0 0 10px;
 }
 span{
     font-size: 30px;
     font-weight: bold;
     line-height: 80px;
 }
-.import{
+.input{
     float: right;
+    margin: 20px 10px 0 0;
 }
 </style>

@@ -17,12 +17,12 @@ export default {
         //字体最小值
         fontSizeMin: {
             type: Number,
-            default: 30
+            default: 40
         },
         //字体最大值
         fontSizeMax: {
             type: Number,
-            default: 40
+            default: 50
         },
         //验证码图片背景色最小值
         backgroundColorMin: {

@@ -1,17 +1,13 @@
 <template>
 <div class="course">
-
-
-    <div class="course-item">
-        <el-button class="el-icon-plus" style="font-size: 198px;float: left;" @click="addCourse"></el-button>
-    </div>
-
     <div class="course-item" v-for="item in courseInfo">
-        <img alt="课程图片" src="../../assets/img/1.jpg">
         <p class="name">{{item.name}}</p>
-        <p class="description">{{item.teacher}}</p>
+        <p class="description">教师：{{item.teacher}}</p>
         <p class="description">上课时间：{{item.teacher}}</p>
         <p class="description">学分：{{item.credits}}</p>
+    </div>
+    <div class="course-item">
+        <el-button class="el-icon-plus" style="font-size: 140px;float: left;" @click="addCourse"></el-button>
     </div>
 </div>
 </template>
@@ -23,38 +19,34 @@ export default {
         return{
             courseInfo:[
                 {
-                    img:'../../assets/img/1.jpg',
-                    name:'????????',
+                    name:'大学英语',
                     teacher:'张三',
                     time:'周一8:00-12:00',
                     credits:5
 
                 },
                 {
-                    img:'../../assets/img/1.jpg',
-                    name:'????????',
+                    name:'大学物理',
                     teacher:'张三',
                     time:'周一8:00-12:00',
                     credits:5
 
                 },
                 {
-                    img:'../../assets/img/1.jpg',
-                    name:'????????',
+                    name:'高等数学',
                     teacher:'张三',
                     time:'周一8:00-12:00',
                     credits:5
 
                 },
                 {
-                    img:'../../assets/img/1.jpg',
-                    name:'????????',
+                    name:'线性代数',
                     teacher:'张三',
                     time:'周一8:00-12:00',
                     credits:5
 
-                },{
-                    img:'../../assets/img/1.jpg',
+                },
+                {
                     name:'????????',
                     teacher:'张三',
                     time:'周一8:00-12:00',
@@ -80,29 +72,24 @@ export default {
 </script>
 
 <style scoped>
-.course{
-    width: 1500px;
-}
-.course-item{
-    width: 240px;
-    height: 300px;
-    border: #1a70c9 solid 1px;
-    margin-right: 30px;
-    float: left;
 
-}
-img{
-    width: 240px;
-    height: 130px;
+.course-item{
+    width: 180px;
+    height: 162px;
+    margin:24px 0 0 24px;
+    padding: 10px;
+    float: left;
     border-radius: 10px;
+    box-shadow: #bbb8b8 0 0 10px 2px;
 }
+
 .name{
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     text-align: left;
 }
 .description{
-    font-size: 12px;
+    font-size: 14px;
     color: #8d8d8d;
     text-align: left;
 }
