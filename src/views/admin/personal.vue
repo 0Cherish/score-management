@@ -132,7 +132,6 @@ export default {
 
 <style scoped>
 .personal {
-    border: black solid 1px;
     padding:0 30px;
 }
 

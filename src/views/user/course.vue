@@ -45,13 +45,6 @@ export default {
                     time:'周一8:00-12:00',
                     credits:5
 
-                },
-                {
-                    name:'????????',
-                    teacher:'张三',
-                    time:'周一8:00-12:00',
-                    credits:5
-
                 }
             ]
         }

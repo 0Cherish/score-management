@@ -37,6 +37,7 @@
 
 <script>
 import IdentifyCode from "../../components/identify";
+import axios from "axios";
 export default {
     name: "login-username",
     components: {IdentifyCode},
@@ -111,7 +112,15 @@ export default {
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    this.$router.push('/user')
+                    // this.$router.push('/user')
+                    axios.get("http://localhost:1080/cookie_session_war/login",{
+                        params:{
+                            username:this.ruleForm.username,
+                            password:this.ruleForm.password
+                        }
+                    }).then((response)=>{
+                        console.log(response.data);
+                    })
                 } else {
                     console.log('error submit!!');
                     return false;

@@ -31,8 +31,13 @@ export default {
 <style scoped>
 .login{
     padding-top: 130px;
+    height: calc(100% - 130px);
+    background-image: url("https://cas.hdu.edu.cn/cas/comm/hdu/image/login_container_bg_01.jpg?1661922264416");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .title{
+    color: white;
     font-weight: bold;
     font-size: 30px;
     margin-top: 0;

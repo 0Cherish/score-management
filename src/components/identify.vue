@@ -106,15 +106,12 @@ export default {
         drawText(ctx, txt, i) {
             ctx.fillStyle = this.randomColor(this.colorMin, this.colorMax)
             ctx.font = this.randomNum(this.fontSizeMin, this.fontSizeMax) + 'px SimHei'
-            let x = (i + 1) * (this.contentWidth / (this.identifyCode.length + 1))
+            let x = (i+0.5) * (this.contentWidth / (this.identifyCode.length + 1))
             let y = this.randomNum(this.fontSizeMax, this.contentHeight - 5)
-            let deg = this.randomNum(-45, 45)
-            // 修改坐标原点和旋转角度
+            // 修改坐标原点
             ctx.translate(x, y)
-            ctx.rotate(deg * Math.PI / 180)
             ctx.fillText(txt, 0, 0)
-            // 恢复坐标原点和旋转角度
-            ctx.rotate(-deg * Math.PI / 180)
+            // 恢复坐标原点
             ctx.translate(-x, -y)
         },
         // 绘制干扰线

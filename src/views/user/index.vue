@@ -136,10 +136,9 @@ export default {
 }
 
 .page{
-    height: 897px;
+    height: calc(100% - 40px);
     width: 1200px;
     margin:auto;
-    border: black solid 1px;
 }
 .page::after{
     content: '';
@@ -154,13 +153,13 @@ export default {
 
 .content {
     width: 920px;
-    height: 837px;
+    height: calc(100% - 60px);
     padding: 30px;
     float: left;
 }
 
 .main{
-    height: 837px;
+    height: 100%;
     background-color: white;
     border-radius: 10px;
     box-shadow: #bbb8b8 0 0 10px 2px;
